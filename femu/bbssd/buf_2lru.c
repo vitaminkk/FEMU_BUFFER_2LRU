@@ -45,7 +45,7 @@ static void buffer_delete_rnode(struct ssd* ssd, uint64_t lpn) {
         // 计算 lpn 对应的 buffer_group 中包含的逻辑扇区数量
         uint32_t nsecs = bit_count(rnode->stored);
         rbuffer->secs_cnt -= nsecs;
-        ftl_assert(ssd->fp_buf_log);
+        //ftl_assert(ssd->fp_buf_log);
         //fprintf(ssd->fp_buf_log, "enter buffer_delete_rnode");
         /*从缓存的双链表中断链rnode并维护lru*/
         Isolate_NODE(ssd, rbuffer, rnode);
@@ -190,7 +190,7 @@ static uint64_t buffer_read(struct ssd* ssd, NvmeRequest* req, uint64_t lpn, uin
     tAVLTree* buffer = ssd->rbuffer;
     struct buffer_group* old_node = buffer_search(buffer, lpn);
 
-    ftl_assert(ssd->fp_buf_log);
+    //ftl_assert(ssd->fp_buf_log);
 #ifdef HC_LOG
     //fprintf(ssd->fp_buf_log, "buffer_read lpn:%ld,hl:%d,cl:%d,", lpn, buffer->HotList_length, buffer->CandidateList_length);
 #endif    
